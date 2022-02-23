@@ -6,7 +6,7 @@ Terraform module with create ecr and ecr policy resources on AWS.
 
 ```terraform
 module "ecr" {
-  source = "git::ssh://git@bitbucket.org/bdmsecosystem/zeus-terraform-aws-ecr.git?ref=v1.0.0"
+  source = "git::ssh://git@github.com:oozou/terraform-aws-ecr.git"
   repository_name = "zeus-test-repo"
   environment     = "dev"
   tags = {

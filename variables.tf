@@ -4,7 +4,7 @@ variable "prefix" {
 }
 
 variable "repository_name" {
-  description = "Name of the repository"
+  description = "Name of the repository (pass + micro service name)"
   type        = string
 }
 

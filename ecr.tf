@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "this" {
-  name                 = var.repository_name
+  name                 = "${local.prefix}-${var.repository_name}"
   image_tag_mutability = var.immutable ? "IMMUTABLE" : "MUTABLE"
 
   image_scanning_configuration {

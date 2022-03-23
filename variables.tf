@@ -1,5 +1,10 @@
+variable "prefix" {
+  description = "The prefix name of customer to be displayed in AWS console and resource"
+  type        = string
+}
+
 variable "repository_name" {
-  description = "Name of the repository"
+  description = "Name of the repository (pass + micro service name)"
   type        = string
 }
 

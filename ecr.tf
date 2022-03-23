@@ -5,13 +5,11 @@ resource "aws_ecr_repository" "this" {
   image_scanning_configuration {
     scan_on_push = var.scan_on_push
   }
-
   tags = merge(
     {
-      "Name" = "${var.repository_name}-${var.environment}-repository"
+      "Name" = "${local.prefix}-${var.repository_name}"
     },
-    var.tags,
-    local.default_tags
+    local.tags
   )
 }
 
@@ -22,7 +20,10 @@ data "aws_iam_policy_document" "allow_access" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
       "ecr:BatchCheckLayerAvailability",
-      "ecr:GetAuthorizationToken"
+      "ecr:GetAuthorizationToken",
+      "ecr:ListImages",
+      "ecr:DescribeImages",
+      "ecr:ListTagsForResource"
     ]
     principals {
       type        = "AWS"

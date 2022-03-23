@@ -20,7 +20,10 @@ data "aws_iam_policy_document" "allow_access" {
       "ecr:GetDownloadUrlForLayer",
       "ecr:BatchGetImage",
       "ecr:BatchCheckLayerAvailability",
-      "ecr:GetAuthorizationToken"
+      "ecr:GetAuthorizationToken",
+      "ecr:ListImages",
+      "ecr:DescribeImages",
+      "ecr:ListTagsForResource"
     ]
     principals {
       type        = "AWS"

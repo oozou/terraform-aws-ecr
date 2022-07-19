@@ -42,3 +42,12 @@ variable "push_pull_access_principal_arns" {
   type        = list(string)
   default     = []
 }
+
+variable "encryption_configuration" {
+  type = object({
+    encryption_type = string
+    kms_key         = any
+  })
+  description = "ECR encryption configuration"
+  default     = null
+}

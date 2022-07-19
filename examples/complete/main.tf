@@ -11,8 +11,8 @@ module "ecr" {
   }
 
   # Access
-  pull_access_principal_arns = ["arn:aws:iam::562563527952:group/readonly-dev"]
-  push_pull_access_principal_arns = ["arn:aws:iam::562563527952:group/developer-dev"]
+  pull_access_principal_arns = ["arn:aws:iam::xxxx:group/readonly-dev"]
+  push_pull_access_principal_arns = ["arn:aws:iam::xxxx:group/developer-dev"]
 
   # Security
   immutable = true

@@ -7,6 +7,7 @@ All notable changes to this module will be documented in this file.
 ### Changed
 
 - Update aws provider to version `>= 4.0.0`
+- Rename file `ecr.tf` to `main.tf`
 
 ## [1.0.2] - 2022-07-19
 

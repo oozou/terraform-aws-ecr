@@ -13,7 +13,7 @@ resource "aws_ecr_repository" "this" {
       kms_key         = encryption_configuration.value.kms_key
     }
   }
-    
+
   tags = merge(
     {
       "Name" = "${local.prefix}-${var.repository_name}"

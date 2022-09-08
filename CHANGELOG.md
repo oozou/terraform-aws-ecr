@@ -2,6 +2,12 @@
 
 All notable changes to this module will be documented in this file.
 
+## [1.0.3] - 2022-09-08
+
+### Changed
+
+- Update aws provider to version `>= 4.0.0`
+
 ## [1.0.2] - 2022-07-19
 
 ### Added

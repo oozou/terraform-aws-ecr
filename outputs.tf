@@ -15,10 +15,10 @@ output "image_name" {
 
 output "aws_cloudwatch_event_rule_id" {
   description = "The name of the rule"
-  value       = try(module.scan_eventbridge.aws_cloudwatch_event_rule_id, "")
+  value       = try(module.scan_eventbridge[0].aws_cloudwatch_event_rule_id, "")
 }
 
 output "aws_cloudwatch_event_rule_arn" {
   description = "The Amazon Resource Name (ARN) of the rule."
-  value       = try(module.scan_eventbridge.aws_cloudwatch_event_rule_arn, "")
+  value       = try(module.scan_eventbridge[0].aws_cloudwatch_event_rule_arn, "")
 }

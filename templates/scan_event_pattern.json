@@ -8,4 +8,7 @@
   "resources": [
     "${ecr_arn}"
   ],
+  "detail": {
+    "finding-severity-counts": {}
+  }
 }

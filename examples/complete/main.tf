@@ -50,7 +50,9 @@ module "ecr" {
   pull_access_principal_arns      = ["arn:aws:iam::xxxx:group/readonly-dev"]
   push_pull_access_principal_arns = ["arn:aws:iam::xxxx:group/developer-dev"]
 
+  scan_on_push                = true
   cloudwatch_event_target_arn = module.sns.sns_topic_arn
+  severity_alert_options      = ["critical", "high", "medium", "low", "informational", "undefined"]
 
   # Security
   encryption_configuration = {

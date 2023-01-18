@@ -3,7 +3,7 @@ variable "prefix" {
   type        = string
 }
 
-variable "repository_name" {
+variable "name" {
   description = "Name of the repository (pass + micro service name)"
   type        = string
 }
@@ -50,4 +50,16 @@ variable "encryption_configuration" {
   })
   description = "ECR encryption configuration"
   default     = null
+}
+
+variable "cloudwatch_event_target_arn" {
+  description = "The Amazon Resource Name (ARN) associated of the target."
+  type        = string
+  default     = ""
+}
+
+variable "severity_alert_options" {
+  description = "(Optional) Choose alerting options"
+  type        = list(string)
+  default     = ["critical", "high", "medium"]
 }

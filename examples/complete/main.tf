@@ -1,25 +1,62 @@
+data "aws_iam_policy_document" "cloudwatch_access_kms_policy" {
+  statement {
+    sid    = "AllowCloudWatchToPublishMessageToEncryptedSNS"
+    effect = "Allow"
+    actions = [
+      "kms:Decrypt",
+      "kms:GenerateDataKey*",
+    ]
+    resources = ["*"]
+    principals {
+      identifiers = ["events.amazonaws.com"]
+      type        = "Service"
+    }
+  }
+}
+
+module "sns" {
+  source  = "oozou/sns/aws"
+  version = "1.0.1"
+
+  prefix      = "oozou"
+  environment = "dev"
+  name        = "demo-alerting"
+
+  sns_permission_configuration = {
+    allow_eventbridge_to_publish_alert = {
+      pricipal = "events.amazonaws.com"
+    }
+  }
+
+  subscription_configurations = {
+    oozou_admin = {
+      protocol  = "email"
+      addresses = ["big@oozou.com"]
+    }
+  }
+
+  additional_kms_key_policies = [data.aws_iam_policy_document.cloudwatch_access_kms_policy.json]
+
+  tags = { "Workspace" : "Demo" }
+}
+
 module "ecr" {
   source = "../.."
 
-  # Generics
-  repository_name = "sample-test-repo"
-  prefix          = "oozou"
-  environment     = "dev"
+  prefix      = "oozou"
+  environment = "dev"
+  name        = "demo-ecr"
 
-  tags = {
-    "test" : "example-tag"
-  }
-
-  # Access
-  pull_access_principal_arns = ["arn:aws:iam::xxxx:group/readonly-dev"]
+  pull_access_principal_arns      = ["arn:aws:iam::xxxx:group/readonly-dev"]
   push_pull_access_principal_arns = ["arn:aws:iam::xxxx:group/developer-dev"]
 
+  cloudwatch_event_target_arn = module.sns.sns_topic_arn
+
   # Security
-  immutable = true
-  scan_on_push = true
   encryption_configuration = {
     encryption_type = "KMS"
     kms_key         = null
   }
 
+  tags = { "Workspace" : "Demo" }
 }

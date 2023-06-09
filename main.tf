@@ -85,7 +85,7 @@ resource "aws_ecr_repository_policy" "allow_access" {
 /*                                 EventBridge                                */
 /* -------------------------------------------------------------------------- */
 module "scan_eventbridge" {
-  count = var.scan_on_push && length(var.severity_alert_options) > 0 && var.cloudwatch_event_target_arn != "" ? 1 : 0
+  count = var.scan_on_push && length(var.severity_alert_options) > 0  ? 1 : 0
 
   source = "git@github.com:oozou/terraform-aws-eventbridge.git?ref=feat/support-multiple-target"
 

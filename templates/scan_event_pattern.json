@@ -1,0 +1,14 @@
+{
+  "detail-type": [
+    "ECR Image Scan"
+  ],
+  "source": [
+    "aws.ecr"
+  ],
+  "resources": [
+    "${ecr_arn}"
+  ],
+  "detail": {
+    "finding-severity-counts": {}
+  }
+}

@@ -2,6 +2,22 @@
 
 All notable changes to this module will be documented in this file.
 
+## [1.1.0] - 2023-01-23
+
+### Added
+
+- Add locals `pre_event_pattern`, `greater_than_zero_pattern`, `severity_alert_options` and `event_pattern`
+- Add modules `scan_eventbridge` to send alert to cloudwatch_event_target_arn
+- Add outputs `aws_cloudwatch_event_rule_id` and `aws_cloudwatch_event_rule_arn`
+- Add file event_pattern at `./templates/scan_event_pattern.json`
+- Add variables `cloudwatch_event_target_arn` and `severity_alert_options`
+
+### Changed
+
+- Update example `.examples/complete` with alerting
+- Update local from `prefix` to `name`
+- Update variable naming from `repository_name` to `name`
+
 ## [1.0.3] - 2022-09-08
 
 ### Changed

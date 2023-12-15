@@ -63,3 +63,15 @@ variable "severity_alert_options" {
   type        = list(string)
   default     = ["critical", "high", "medium"]
 }
+
+variable "is_create_lifecycle_policy" {
+  description = "Determines whether a lifecycle policy will be created"
+  type        = bool
+  default     = false
+}
+
+variable "repository_lifecycle_policy" {
+  description = "The policy document. This is a JSON formatted string. See more details about [Policy Parameters](http://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html#lifecycle_policy_parameters) in the official AWS docs"
+  type        = string
+  default     = ""
+}

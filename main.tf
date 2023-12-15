@@ -82,12 +82,21 @@ resource "aws_ecr_repository_policy" "allow_access" {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                 Lifecycle Policy                           */
+/* -------------------------------------------------------------------------- */
+resource "aws_ecr_lifecycle_policy" "this" {
+  count = var.is_create_lifecycle_policy ? 1 : 0
+  repository = aws_ecr_repository.this.name
+  policy     = var.repository_lifecycle_policy
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                 EventBridge                                */
 /* -------------------------------------------------------------------------- */
 module "scan_eventbridge" {
   count = var.scan_on_push && length(var.severity_alert_options) > 0  ? 1 : 0
-
-  source = "git@github.com:oozou/terraform-aws-eventbridge.git?ref=feat/support-multiple-target"
+  source  = "oozou/eventbridge/aws"
+  version = "1.1.0"
 
   prefix      = var.prefix
   environment = var.environment

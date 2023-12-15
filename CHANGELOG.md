@@ -2,6 +2,17 @@
 
 All notable changes to this module will be documented in this file.
 
+## [1.2.0] - 2023-12-15
+
+### Added 
+
+- Add resource `aws_ecr_lifecycle_policy`
+- Add variables `is_create_lifecycle_policy` and `repository_lifecycle_policy`
+
+### Changed
+
+- Update example `.examples/complete` with lifecycle policy
+
 ## [1.1.0] - 2023-01-23
 
 ### Added

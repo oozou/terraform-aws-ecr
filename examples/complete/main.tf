@@ -53,6 +53,26 @@ module "ecr" {
   scan_on_push                = true
   cloudwatch_event_target_arn = module.sns.sns_topic_arn
   severity_alert_options      = ["critical", "high", "medium", "low", "informational", "undefined"]
+  is_create_lifecycle_policy  = true
+  repository_lifecycle_policy = <<EOF
+  {
+      "rules": [
+          {
+              "rulePriority": 1,
+              "description": "Expire untagged images older than 14 days",
+              "selection": {
+                  "tagStatus": "any",
+                  "countType": "sinceImagePushed",
+                  "countUnit": "days",
+                  "countNumber": 14
+              },
+              "action": {
+                  "type": "expire"
+              }
+          }
+      ]
+  }
+  EOF
 
   # Security
   encryption_configuration = {
